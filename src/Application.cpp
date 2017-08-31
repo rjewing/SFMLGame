@@ -2,7 +2,7 @@
 #include "State.hpp"
 #include "StateIdentifiers.hpp"
 #include "TitleState.hpp"
-// #include "GameState.hpp"
+#include "GameState.hpp"
 #include "MenuState.hpp"
 // #include "PauseState.hpp"
 
@@ -14,13 +14,14 @@ Application::Application() :
 window(sf::VideoMode::getDesktopMode(), "States", sf::Style::Close),
 textures(),
 fonts(),
-player(),
+player(this->window),
 stateStack(State::Context(this->window, this->textures, this->fonts, this->player)),
 statisticsText(),
 statisticsUpdateTime(),
 statisticsNumFrames(0)
 {
 	this->window.setKeyRepeatEnabled(false);
+	this->window.setFramerateLimit(60);
 	this->fonts.load(Fonts::Main, "media/Sansation.ttf");
 	this->textures.load(Textures::TitleScreen, "media/textures/WorldMap.png");
 
@@ -94,6 +95,6 @@ void Application::updateStatistics(sf::Time dt) {
 void Application::registerStates() {
 	this->stateStack.registerState<TitleState>(States::Title);
 	this->stateStack.registerState<MenuState>(States::Menu);
-	// this->stateStack.registerState<GameState>(States::Game);
+	this->stateStack.registerState<GameState>(States::Game);
 	// this->stateStack.registerState<PauseState>(States::Pause);
 }

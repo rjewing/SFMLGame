@@ -21,25 +21,24 @@
 // 	sf::RenderWindow& window;
 // };
 
-Player::Player() {
-	// this->mouseBinding[sf::Mouse::Left] = SelectWorker;
-	// this->mouseBinding[sf::Mouse::Right] = SetWorkerTarget;
-
-	initializeActions();
-
-	for (auto& pair : this->actionBinding)
-		pair.second.category = Category::Player;
-}
-
-// Player::Player(sf::RenderWindow& w) : window(w){
-// 	// this->mouseBinding[sf::Mouse::Left] = SelectWorker;
+// Player::Player() {
 // 	this->mouseBinding[sf::Mouse::Left] = SetWorkerTarget;
 //
 // 	initializeActions();
 //
 // 	for (auto& pair : this->actionBinding)
-// 		pair.second.category = Category::SelectedWorker;
+// 		pair.second.category = Category::Player;
 // }
+
+Player::Player(sf::RenderWindow& w) : window(w){
+	// this->mouseBinding[sf::Mouse::Left] = SelectWorker;
+	this->mouseBinding[sf::Mouse::Left] = SetWorkerTarget;
+
+	initializeActions();
+
+	for (auto& pair : this->actionBinding)
+		pair.second.category = Category::SelectedWorker;
+}
 
 void Player::handleEvent(const sf::Event& event, CommandQueue& commands) {
 	if (event.type == sf::Event::KeyPressed) {
@@ -114,7 +113,7 @@ sf::Mouse::Button Player::getAssignedButton(Action action) const {
 void Player::initializeActions() {
 	// this->actionBinding[SelectWorker].action = derivedAction<Worker>( [] (Worker& w, sf::Time) {w.setCategory(Category::SelectedWorker)};
 
-	// this->actionBinding[SetWorkerTarget].action = derivedAction<Worker>(WorkerMover(this->window));
+	this->actionBinding[SetWorkerTarget].action = derivedAction<Worker>( [this] (Worker& w, sf::Time) { w.setWorkLocation(sf::Vector2f(sf::Mouse::getPosition(window))); });
 }
 
 bool Player::isRealtimeAction(Action action) {

@@ -77,13 +77,18 @@ Worker::Worker(Type type, const TextureHolder& textures) {
 void Worker::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(this->sprite, states);
 
-	sf::RectangleShape shape;
-	shape.setPosition(sf::Vector2f(this->targetLocation.x, this->targetLocation.y));
-	shape.setSize(sf::Vector2f(5, 5));
-	shape.setOutlineColor(sf::Color::Red);
-	shape.setOutlineThickness(1.f);
+	if (this->type == Type::SelectedWorker) {
+		sf::FloatRect rect = getBoundingRect();
 
-	target.draw(this->sprite, states);
+		sf::RectangleShape shape;
+		shape.setPosition(sf::Vector2f(rect.left, rect.top));
+		shape.setSize(sf::Vector2f(rect.width, rect.height));
+		shape.setFillColor(sf::Color::Transparent);
+		shape.setOutlineColor(sf::Color::Red);
+		shape.setOutlineThickness(1.f);
+
+		target.draw(shape);
+	}
 }
 
 void Worker::setWorkLocation(sf::Vector2f pos) {
