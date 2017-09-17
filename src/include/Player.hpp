@@ -21,8 +21,8 @@ public:
 	};
 
 public:
-	Player();
-	// Player(sf::RenderWindow& w);
+	// Player();
+	Player(sf::RenderWindow& w);
 	void handleEvent(const sf::Event& event, CommandQueue& commands);
 	void handleRealtimeInput(CommandQueue& commands);
 
@@ -41,7 +41,7 @@ private:
 	std::map<sf::Mouse::Button, Action> mouseBinding;
 	std::map<Action, Command> actionBinding;
 
-	// sf::RenderWindow& window;
+	sf::RenderWindow& window;
 	// std::vector<std::unique_ptr<Worker>> workers;
 };
 

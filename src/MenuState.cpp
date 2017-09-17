@@ -79,7 +79,7 @@ void MenuState::updateOptionText() {
 		return;
 
 	for (sf::Text& text : this->options)
-		text.setColor(sf::Color::White);
+		text.setFillColor(sf::Color::White);
 
-	this->options[this->optionIndex].setColor(sf::Color::Red);
+	this->options[this->optionIndex].setFillColor(sf::Color::Red);
 }
