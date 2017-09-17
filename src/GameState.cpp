@@ -23,8 +23,8 @@ bool GameState::handleEvent(const sf::Event& event) {
 		this->world.selectWorker();
 	}
 
-    // if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-    //     requestStackPush(States::Pause);
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+        requestStackPush(States::Pause);
 
     return true;
 }

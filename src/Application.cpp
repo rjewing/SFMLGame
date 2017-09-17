@@ -4,7 +4,7 @@
 #include "TitleState.hpp"
 #include "GameState.hpp"
 #include "MenuState.hpp"
-// #include "PauseState.hpp"
+#include "PauseState.hpp"
 
 #include <iostream>
 
@@ -96,5 +96,5 @@ void Application::registerStates() {
 	this->stateStack.registerState<TitleState>(States::Title);
 	this->stateStack.registerState<MenuState>(States::Menu);
 	this->stateStack.registerState<GameState>(States::Game);
-	// this->stateStack.registerState<PauseState>(States::Pause);
+	this->stateStack.registerState<PauseState>(States::Pause);
 }

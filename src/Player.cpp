@@ -1,3 +1,7 @@
+#include "Player.hpp"
+#include "CommandQueue.hpp"
+#include "Worker.hpp"
+
 #include <map>
 #include <string>
 #include <algorithm>
@@ -6,20 +10,6 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-#include "Player.hpp"
-#include "CommandQueue.hpp"
-#include "Worker.hpp"
-
-// struct WorkerMover {
-// 	WorkerMover(sf::RenderWindow& w) : window(w) {}
-//
-// 	void operator() (Worker& worker, sf::Time) const {
-// 		worker.setWorkLocation(sf::Vector2f(sf::Mouse::getPosition(this->window)));
-// 		worker.deselect();
-// 	}
-//
-// 	sf::RenderWindow& window;
-// };
 
 // Player::Player() {
 // 	this->mouseBinding[sf::Mouse::Left] = SetWorkerTarget;
